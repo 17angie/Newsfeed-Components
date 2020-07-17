@@ -122,14 +122,32 @@ const articleMaker = (title, date, firstParagraph, secondParagraph, thirdParagra
   const text3 = document.createElement('p')
   const btn = document.createElement('span')
 
-  article.appendChild('name')
-  article.appendChild('artDate')
-  article.appendChild('text1')
-  article.appendChild('text2')
-  article.appendChild('text3')
-  article.appendChild('btn')
+  article.appendChild(name)
+  article.appendChild(artDate)
+  article.appendChild(text1)
+  article.appendChild(text2)
+  article.appendChild(text3)
+  article.appendChild(btn)
 
   article.classList.add('article')
   artDate.classList.add('date')
   btn.classList.add('expandButton')
+
+  name.textContent = title;
+  artDate.textContent = date;
+  text1.textContent = firstParagraph;
+  text2.textContent = secondParagraph;
+  text3.textContent = thirdParagraph;
+  btn.textContent = '+'
+
+  btn.addEventListener('click', () => {
+    article.classList.toggle("article-open")
+  })
+
+  return article;
 }
+const articles = document.querySelector('.articles')
+
+data.forEach(article => {
+  articles.appendChild(articleMaker(article.title, article.date, article.firstParagraph, article.secondParagraph, article.thirdParagraph))
+})
